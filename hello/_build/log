@@ -1,0 +1,6 @@
+# dune init proj hello
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /home/yufeng/.cache/dune/db
+# Workspace root: /home/yufeng/crafting-interpreters/hello
+# Auto-detected concurrency: 16
