@@ -1,5 +1,5 @@
-# crafting-interpreters
-Doing the first part in OCaml
+# Crafting Interpreters
+Doing the first part in OCaml, second part in C.
 
 # Progress
 Introduction
