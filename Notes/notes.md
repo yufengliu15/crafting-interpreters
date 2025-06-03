@@ -16,3 +16,12 @@ The first step is **scanning**, also known as **lexing** or **lexical analysis**
 Thus, our example after being scanned will look like: `var` `average` `=` `(` `min` `+` `max` `)` `/` `2` `;`
 
 #### Parsing
+This is where the syntax gets a **grammar**. Similar to diagramming sentences in English class.
+
+The parser takes the flat sequence of tokens and builds a tree structure that mirrors the nested nature of the grammar. Can be called **parse tree** or **abstract syntax tree**, depending on how close to the  bare syntactic structure of the source language they are. 
+
+![Parser Tree](assets/parser_tree.jpg)
+
+Think of linguistics here. Also note that it is the **parser's job to report syntax errors**
+
+#### Static Analysis
