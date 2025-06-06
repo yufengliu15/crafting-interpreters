@@ -25,3 +25,21 @@ The parser takes the flat sequence of tokens and builds a tree structure that mi
 Think of linguistics here. Also note that it is the **parser's job to report syntax errors**
 
 #### Static Analysis
+This is where the individual characteristics of each language occurs. 
+
+For example, in an expression like `a + b`, we know that we are adding `a` and `b`, but we don't know what those variables refer to. Local? Global? Where are they defined?
+
+The first bit of analysis that most languages do is called **binding** or **resolution**. For each **identifier**, we find out where that name is defined and wire the two together. This is where **scope** comes into play - the region of source code where a certain name can be used to refer to a certain declaration. 
+
+If the language is statically typed, this is when we type check. 
+
+We are now at the peak of the mountain. All this insight that is visible to us from analysis needs to be stored somwhere:
+- Often, it gets stored right back as **attributes** on the syntax tree itself - extra fields in the nodes that aren't initialized during parsing but get filled in later
+- Store in a lookup table off to the side, known as a **symbol table**. The key would be the variable and declaration. 
+- The most powerful is to transform the tree into a different data structure that suits the semantics of the code. (Next section) 
+
+Everything up to here is considered the **front end** of the implementation. 
+
+Next sections will be the **middle end**.
+
+#### Intermediate Representations
