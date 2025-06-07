@@ -43,3 +43,29 @@ Everything up to here is considered the **front end** of the implementation.
 Next sections will be the **middle end**.
 
 #### Intermediate Representations
+The compiler can be thought of as a pipeline, where each stage's job is to organize the data representing the user's code in a way that makes the next stage simpler to implement. The front end (of the pipeline) is specific to the source language the program is written in. The back end is concerned with the final architecture where the program will run. 
+
+In the middle, the compiler may store the code in some intermediate representation (IR). This simply acts as the middleware between the front and end of the pipeline. 
+
+This allows generability. For example, suppose we want to implement Pascal, C, and Fortran compliers, and we are targeting x86 and ARM. Normally, this would mean we would have to write 6 full compilers (every combination).
+
+A shared intermediate representation reduces dramatcally. Now, we write one front end for each source language that produces the IR, and one back end for each target architecture.
+
+This becomes $O(n*m)$ vs $O(n+m)$ where $n$ represents the number of langauges and $m$ represents the number of architectures.
+
+#### Optimization
+Once we understand what the user's program means, we can then further optimize it. 
+
+A simple example is **constant folding**: if some expression always evalutes to the exact same value, we can do the evaluation at **compile time** and replace the code for the expression with its result. For example:
+```ocaml
+let expression = 3.14158 * (0.75 / 2) * (0.75 / 2);;
+```
+
+we could do all of that arithmetic in the compiler and change the code to:
+```ocaml
+let expression = 0.4417860938;;
+```
+
+This book will not cover optimization. Note that many successful languages have few compile-time optimizations. For example, Lua and CPython. 
+
+#### Code generation
