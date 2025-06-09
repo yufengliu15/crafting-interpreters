@@ -1,6 +1,4 @@
-# Crafting Interpreters
-## Introduction
-### A Map of the Territory
+# A Map of the Territory
 This book is about a language's *implementation*
 
 You can visualize the network of paths an implementation may choose as climbing a mountain. The bottom represents raw source text. Each phase anaylzes the program and traforms it to some higher-level representation. 
@@ -10,12 +8,14 @@ Once we reach the peak, this means we can see what their code *means*. Then, we 
 ![Mountain illustration for programming languages](assets/mountain_languages.jpg)
 
 Let's do an example: `v` `a` `r` `a` `v` `e` `r` `a` `g` `e` `=` `(` `m` `i` `n` `+` `m` `a` `x` `)` `/` `2` `;`
-#### Scanning
+
+## The Parts of a Language
+### Scanning
 The first step is **scanning**, also known as **lexing** or **lexical analysis**. It makes sense of the linear stream of characters, and puts them together, called a **token**. Some tokens are `(`, `,`, `123`, `"hi!"` or `min`
 
 Thus, our example after being scanned will look like: `var` `average` `=` `(` `min` `+` `max` `)` `/` `2` `;`
 
-#### Parsing
+### Parsing
 This is where the syntax gets a **grammar**. Similar to diagramming sentences in English class.
 
 The parser takes the flat sequence of tokens and builds a tree structure that mirrors the nested nature of the grammar. Can be called **parse tree** or **abstract syntax tree**, depending on how close to the  bare syntactic structure of the source language they are. 
@@ -24,7 +24,7 @@ The parser takes the flat sequence of tokens and builds a tree structure that mi
 
 Think of linguistics here. Also note that it is the **parser's job to report syntax errors**
 
-#### Static Analysis
+### Static Analysis
 This is where the individual characteristics of each language occurs. 
 
 For example, in an expression like `a + b`, we know that we are adding `a` and `b`, but we don't know what those variables refer to. Local? Global? Where are they defined?
@@ -42,7 +42,7 @@ Everything up to here is considered the **front end** of the implementation.
 
 Next sections will be the **middle end**.
 
-#### Intermediate Representations
+### Intermediate Representations
 The compiler can be thought of as a pipeline, where each stage's job is to organize the data representing the user's code in a way that makes the next stage simpler to implement. The front end (of the pipeline) is specific to the source language the program is written in. The back end is concerned with the final architecture where the program will run. 
 
 In the middle, the compiler may store the code in some intermediate representation (IR). This simply acts as the middleware between the front and end of the pipeline. 
@@ -53,7 +53,7 @@ A shared intermediate representation reduces dramatcally. Now, we write one fron
 
 This becomes $O(n*m)$ vs $O(n+m)$ where $n$ represents the number of langauges and $m$ represents the number of architectures.
 
-#### Optimization
+### Optimization
 Once we understand what the user's program means, we can then further optimize it. 
 
 A simple example is **constant folding**: if some expression always evalutes to the exact same value, we can do the evaluation at **compile time** and replace the code for the expression with its result. For example:
@@ -68,4 +68,30 @@ let expression = 0.4417860938;;
 
 This book will not cover optimization. Note that many successful languages have few compile-time optimizations. For example, Lua and CPython. 
 
-#### Code generation
+### Code generation
+After optimizations, the last step is to convert the user code into machine readable code. This is called **code gen**. 
+
+We are now in the **back end**, meaning our representation of the code becomes more and more primitive, as we get closer to something our simple-minded machine can understand.
+
+From here, we need to make a decision. Do we generate instructions for a real CPU or a virtual one?
+
+A real machine code, we get an executable that the OS can load directly into the chip, which is really fast. The downside is that generating it is a lot of work. As well, the compiler is tied to the specific architecture. Today's architectures have piles of instructions and complex pipelines. 
+
+To get around this, hackers made their compilers produce virtual machine code, meaning they produced code for a hypothetical, idealized machine. Today, we call it **bytecode** because each instruction is often a single byte long.
+
+### Virtual Machine
+If your compiler produces bytecode, then you would have to translate it, since there is no chip that speaks bytecode. From here, you have 2 options:
+1. Write a mini-compiler for each target architecture that converts the bytecode to native code for that machine. Pretty simple since you get to reuse the rest of the compiler pipeline across all of the machines supported. Basically using the bytecode as an intermediate representation.
+2. Write a **virtual machine**, a program that emulates a hypothetical chip supporting your vm at runtime. Running bytecode in VM is slow, because every instruction must be simulated at runtime each time it executes. In return, you get simplicity and portability. 
+
+### Runtime
+After we format the user's program into a form that we can execute, the last step is running it. If we compiled it to machine code, we simply tell the operating system to load the executable. If we compiled it to bytecode, we need to start up the VM and load the program into that.
+
+Typically, we need some services that our language provides while the program is running. For example, if the language automatically manages memory, we need a garbage collector. 
+
+If a fully compiled language, the code implementing the runtime gets inserted directly into the resulting executable. If the language is run inside an interpreter or VM, then the runtime lives there. 
+
+## Shortcutes and Alternate Routes
+The section before is the long path covering every possible phase that could be implemented. Many languages do every possible phase, but there exists shortcuts and alternate paths.
+
+### Single-pass compilers
