@@ -95,3 +95,19 @@ If a fully compiled language, the code implementing the runtime gets inserted di
 The section before is the long path covering every possible phase that could be implemented. Many languages do every possible phase, but there exists shortcuts and alternate paths.
 
 ### Single-pass compilers
+As soon as you see some expression, you need to know enough to correctly compile.
+
+Pros: Saves memory
+Cons: Restricts the design of the language
+
+C was designed around this limitiation, because at that time, memory was so limited that a compiler might not even be able to hold an entire *source* file in memory. It's why in C you can't call a function above the code that defines it, unless you have an explicit forward declaration.
+
+### Tree-walk interpreters
+Some languages begin executing code right after parsing the abstract syntax tree. The interpreter traverse the syntax tree one branch and leaf at a time, evaluating each node as it goes. 
+
+Pros: Simple? common in student projects and little languages
+Cons: Slow
+
+This is what we'll build at first.
+
+### Transpilers
