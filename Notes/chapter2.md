@@ -111,3 +111,8 @@ Cons: Slow
 This is what we'll build at first.
 
 ### Transpilers
+The idea is that instead of doing all the work to lower the semantics to some primitive target language, you produce a string of valid source code for some other language that's about as high level as yours. Then, you use the already existing compilation tools for that language as a shortcut. 
+
+Used to be called *source-to-source compiler* or a *transcompiler*. Nowadays its called a *transpiler*.
+
+### Just-in-time compilation
