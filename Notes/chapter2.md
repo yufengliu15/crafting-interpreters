@@ -116,3 +116,10 @@ The idea is that instead of doing all the work to lower the semantics to some pr
 Used to be called *source-to-source compiler* or a *transcompiler*. Nowadays its called a *transpiler*.
 
 ### Just-in-time compilation
+Less of a shortcut and best reserved for experts. The fastest way to execute code is by compiling it to machine code, but you might not know what architecture your end user's machine supports. What to do?
+
+On the end user's machine, when the program is loaded -- either from source in the case of JS -- you combile it to native code for the architecture their computer supports. 
+
+The most sophisticated JITs insert profiling hooks into the generated code to see which regions are performance critical and what kind of data flows through them. Then, over time, they will automatically recombile those hot spots with more advanced optimizations.
+
+## Compilers and Interpreters
