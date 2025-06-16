@@ -123,3 +123,10 @@ On the end user's machine, when the program is loaded -- either from source in t
 The most sophisticated JITs insert profiling hooks into the generated code to see which regions are performance critical and what kind of data flows through them. Then, over time, they will automatically recombile those hot spots with more advanced optimizations.
 
 ## Compilers and Interpreters
+Comparing compilers and interpreters is like comparing between fruits and vegetables.
+
+Compiling is an *implementation technique* that involves translating a source language to some other -- usually lower-level --  form. Basically, we translate source to some other form but we do not execute it. 
+
+An interpreter means that it takes in source code and executes it immediately. 
+
+![Venn diagram of Compiler & Interpreter](assets/compilerandinterpreter.jpg)
