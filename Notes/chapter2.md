@@ -130,3 +130,15 @@ Compiling is an *implementation technique* that involves translating a source la
 An interpreter means that it takes in source code and executes it immediately. 
 
 ![Venn diagram of Compiler & Interpreter](assets/compilerandinterpreter.jpg)
+
+# Exercises
+1. Open source implementation of Python: https://github.com/python/cpython/tree/main/Parser
+
+This is actually really cool, but im just so tired right now that i cannot comprehend it. 
+
+2. Here are some pitfalls for JIT:
+- Memory Consumption
+- Complexity and Development
+- Security and Predictability. The process involves generaing and executing new machine code at runtime, which requires memory pages to be both writable and executable, allowing for potential injection attacks.
+
+3. Most Lisp implementations that compile to C also have an interpreter to provide a powerful and interactive REPL (Read-Eval-Print Loop), which allows developers to write, test, and debug code on the fly. This combination offers the best of both worlds: the flexibility and rapid feedback of an interpreter during development, and the high performance of compiled C code for the final application.
