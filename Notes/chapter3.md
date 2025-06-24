@@ -32,3 +32,12 @@ Some data types that will be in Lox:
 - Nil (Null. If we were doing a statically typed language, it would be worth avoiding this. However in a dynamically typed one, ignoring it is often more annoying than implementing)
 
 ## Expressions
+There will be arithmetic, comparison and equality, logical operators, and precedence and grouping (bedmas)
+
+## Statements
+Where an expression's main job is to produce a *value*, a statement's job is to produce an *effect*.  To be useful, they have to otherwise change the world in some way -- usually modifying some state, reading input, or producing output. 
+
+For example print statements
+
+## Variables
+
