@@ -40,4 +40,28 @@ Where an expression's main job is to produce a *value*, a statement's job is to 
 For example print statements
 
 ## Variables
+Variables will be declared with `var`. 
 
+## Control Flow
+There will be `if` statements, `while` and `for` loops. 
+
+## Functions
+Function call same as in C. We use the `fun` keyword for function definitions. 
+- An **argument** is an actual value you pass to a function when you call it. So a function *call* has an *argument* list. 
+- A **parameter** is a variable that holds the value of the argument inside the body of the function. Thus, a function *declaration* has a *parameter* list. 
+
+### Closures
+Functions are *first class* in Lox, meaning they are real values that you can get a reference to, store in variables, pass around, etc. For example:
+```
+fun addPair(a, b) {
+    return a + b;
+}
+
+fun identity(a) {
+    return a;
+}
+
+print identity(addpair)(1,2); // Prints "3"
+```
+
+## Classes
