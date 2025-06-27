@@ -71,3 +71,21 @@ For a dynamically typed language, objects are pretty handy. We need *some* way o
 ### Why is Lox object oriented?
 Because it's cool.
 
+### Classes or prototypes
+When it comes to objects, there are actually two approaches to them, **classes** and **prototypes**. 
+
+In class-based languages, there are 2 core concepts: instances and classes. Instances store the state for each object and have a reference to the instance's class. Classes contain the methods and inheritance chain. To call a method on an instance, there is always a level of indirection. 
+
+![inheritance diagram](assets/class.jpg)
+
+Prototype-based langauges merge these 2 concepts. There are only objects -- no classes -- and each individual object may contain state and methods. Objects can directly inherit from each other:
+
+![objects diagram](assets/objects.jpg)
+
+This means that in some ways prototypal languages are more fundamental than classes. They are really neat to implement because they're so simple. 
+
+However, given this, almost all code written in prototypal languages just end up reinventing classes. Prototypes *are* simpler in the language, but they seem to accomplish that only by pushing the complexity onto the user. 
+
+So, for Lox, we'll just use classes.
+
+### Classes in Lox
