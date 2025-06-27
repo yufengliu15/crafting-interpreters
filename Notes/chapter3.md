@@ -65,3 +65,9 @@ print identity(addpair)(1,2); // Prints "3"
 ```
 
 ## Classes
+### Why might any langauge want to be object oriented?
+For a dynamically typed language, objects are pretty handy. We need *some* way of defining compound data types to bundle blobs of stuff together. 
+
+### Why is Lox object oriented?
+Because it's cool.
+
