@@ -89,3 +89,6 @@ However, given this, almost all code written in prototypal languages just end up
 So, for Lox, we'll just use classes.
 
 ### Classes in Lox
+We can declare a class and its methods and create instances.
+
+### Instantiation and initialization
